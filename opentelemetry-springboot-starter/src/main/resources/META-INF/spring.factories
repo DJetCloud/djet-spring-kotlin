@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cloud.djet.spring.autoconfigure.exporters.jaeger.JaegerSpanExporterAutoConfiguration,\
+cloud.djet.spring.autoconfigure.propagators.PropagationAutoConfiguration,\
+cloud.djet.instrumentation.spring.autoconfigure.OpenTelemetryAutoConfiguration,\
+cloud.djet.spring.autoconfigure.httpclients.resttemplate.RestTemplateAutoConfiguration,\
+cloud.djet.spring.autoconfigure.webmvc.WebMvcFilterAutoConfiguration
