@@ -28,9 +28,11 @@ dependencies {
         exclude("org.junit.vintage", "junit-vintage-engine")
     }
     testImplementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-aop:$springBootVersion")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("org.mockito:mockito-junit-jupiter:3.11.2")
     testImplementation("io.opentelemetry:opentelemetry-extension-trace-propagators:$openTelemetryVersion")
+    testImplementation("org.springframework:spring-test:5.3.9")
 }
 
 tasks.withType<Test> {
