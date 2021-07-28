@@ -33,10 +33,10 @@ class JaegerSpanExporterAutoConfiguration {
     fun otelJaegerSpanExporter(properties: JaegerSpanExporterProperties): JaegerGrpcSpanExporter {
         val builder = JaegerGrpcSpanExporter.builder()
         if (properties.endpoint != null) {
-            builder.setEndpoint(properties.endpoint)
+            builder.setEndpoint(properties.endpoint!!)
         }
         if (properties.timeout != null) {
-            builder.setTimeout(properties.timeout)
+            builder.setTimeout(properties.timeout!!)
         }
         return builder.build()
     }
