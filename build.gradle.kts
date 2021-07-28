@@ -2,20 +2,31 @@ import java.time.Duration
 import nebula.plugin.release.git.opinion.Strategies
 
 plugins {
+    val kotlinVersion = "1.5.21"
     id("idea")
-    kotlin("jvm") version "1.5.10"
-    kotlin("plugin.spring") version "1.5.10" apply false
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion apply false
     id("io.github.gradle-nexus.publish-plugin")
     id("nebula.release")
 }
 
+release {
+    defaultVersionStrategy = Strategies.getSNAPSHOT()
+}
+
+nebulaRelease {
+    addReleaseBranchPattern("""v\d+\.\d+\.x""")
+}
+
 nexusPublishing {
-    packageGroup.set("io.opentelemetry")
+    packageGroup.set("cloud.djet")
 
     repositories {
         sonatype {
-            username.set(System.getenv("SONATYPE_USER"))
-            password.set(System.getenv("SONATYPE_KEY"))
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            //username.set(System.getenv("SONATYPE_USER"))
+            //password.set(System.getenv("SONATYPE_KEY"))
         }
     }
 
@@ -30,20 +41,4 @@ nexusPublishing {
     }
 }
 
-group = "cloud.djet"
-version = "1.0-SNAPSHOT"
 description = "Libraries for the DJet template with SpringBoot / Kotlin "
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation(kotlin("stdlib"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}

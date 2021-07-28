@@ -2,9 +2,12 @@
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
+    id("djet.publish-conventions")
+    id("djet.java-conventions")
 }
 
-group = "cloud.djet"
+group = "cloud.djet.spring"
+version = "1.0"
 
 dependencies {
     val springBootVersion = "2.5.1"
